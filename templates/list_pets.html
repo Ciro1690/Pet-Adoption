@@ -6,15 +6,17 @@
     <h1>All Pets</h1>
     <div class="row">
         {% for pet in pets %}
-            <div class="col-4">
-                <img class="border" src={{ pet.photo_url }} alt="profile_pic">
-                
-                <p class="font-weight-bold"><a href="/{{ pet.id }}">{{ pet.name }}</a>
-                    {% if pet.available == True %} 
-                        is available!
-                    {% endif %}
-                </p>
-            </div>
+            {% if pet.available %}
+                <div class="col-4">
+                    <img class="border" src={{ pet.photo_url }} alt="profile_pic">
+                    <p class="font-weight-bold"><a href="/{{ pet.id }}">{{ pet.name }}</a> is available!</p>
+                </div>
+            {% else %}
+                <div class="col-4">
+                    <img class="border" src={{ pet.photo_url }} alt="profile_pic">
+                    <p class="font-weight-bold"><a href="/{{ pet.id }}">{{ pet.name }}</a></p>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
     <form action="/add">
